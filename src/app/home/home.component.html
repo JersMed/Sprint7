@@ -1,0 +1,79 @@
+<body>
+    <article id="container" class="d-flex" [ngClass]="{'show':budgetService.showBudgetList}">
+        <section id="parent" class="card">
+            <div class="card-header">
+                <span class="btn btn-outline-primary float-start mt-1 me-2" routerLink="">
+                    <i class="bi bi-house-fill"></i>
+                </span>
+
+                <h1 class="justify-content-center">Create your <b class="color">Budget</b></h1>
+            </div>
+
+            <form id="budgetForm" (ngSubmit)="saveDataBudget()" autocomplete="off">
+                <div class="card-body">
+
+                    <div class="budgetCheckbox mb-3 form-check">
+                        <input id="web" type="checkbox" (click)="webCheck($event)" class="form-check-input"> Web Page
+                        (500 €)
+                    </div>
+
+                    <app-panel (pagesAndLangQuantityEmitter)="saveQuantity($event)" *ngIf="showPanel"></app-panel>
+
+                    <div class="budgetCheckbox mb-3 form-check">
+                        <input id="seo" type="checkbox" (click)="seoCheck($event)" class="form-check-input"> SEO
+                        Services (300 €)
+                    </div>
+
+                    <div class="budgetCheckbox mb-3 form-check">
+                        <input id="ads" type="checkbox" (click)="adsCheck($event)" class="form-check-input"> Google Ads
+                        Campaign (200 €)
+                    </div>
+
+
+                    <div class="form-floating mx-3 mb-3">
+                        <input type="text" class="form-control" id="clientName" formControlName="clientName"
+                            placeholder="Client name">
+                        <label for="clientName">Client name</label>
+                        <p class="form-text text-danger">
+                            <span *ngIf="invalidField('clientName')">
+                                Please enter the client name.
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="form-floating mx-3 mb-3">
+                        <input type="text" class="form-control" id="budgetName" formControlName="budgetName"
+                            placeholder="Budget name">
+                        <label for="budgetName">Budget name</label>
+                        <p class="form-text text-danger">
+                            <span *ngIf="invalidField('budgetName')">
+                                Please put a name to this budget.
+                            </span>
+                        </p>
+                    </div>
+
+                    <div
+                        class="d-flex align-items-center justify-content-center text-end mt-3 me-3 animate__animated animate__fadeInDown animate__delay-1s">
+                        <button id="saveBudget" type="submit" class="btn btn-outline-primary mx-5 mb-3">
+                            <i class="bi bi-save"></i> Save budget</button>
+
+                        <button class=" btn btn-outline-primary mx-5 mb-3 linkBudgetHistory text-decoration-none"
+                            (click)="showBudgetList()"><i class="bi bi-clock-history "></i> Budget
+                            history</button>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="card-footer text-muted">
+                <h4>Total price of Service: <span class="badge bg-primary">{{ total }}<i
+                            class="bi bi-currency-euro"></i></span>
+                </h4>
+            </div>
+
+        </section>
+
+        <!-- <app-budget-list class="show ms-2"></app-budget-list> -->
+
+    </article>
+</body>

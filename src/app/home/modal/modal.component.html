@@ -1,0 +1,16 @@
+<span type="button" class="bi bi bi-info-circle text-primary" data-bs-toggle="modal" (click)="open(typeOfMessage)">
+</span>
+
+<ng-template #content let-modal>
+    <div class="modal-body text-center">
+        <div *ngIf="typeOfMessage === 'pagesModal'; else languagesModal">
+            <i class="bi bi-info-circle-fill text-primary"></i> Please select the number of pages that suits your
+            needs. <br> You must at least choose one.
+        </div>
+        <ng-template #languagesModal>
+            <div><i class="bi bi-info-circle-fill text-primary"></i> Please select the number of languages you need for
+                your
+                project. <br> You must at least choose one.</div>
+        </ng-template>
+    </div>
+</ng-template>

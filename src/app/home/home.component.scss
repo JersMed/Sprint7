@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+  
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(141deg, #ccc 25%, #eee 40%, #ddd 55%);
+  font-family: 'Roboto';
+  margin: 0; 
+  height: 100vh;
+}
+
+.card {
+  background-color: white;
+  max-width: 1000px;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.3);
+}
+
+article {
+  padding: 1rem;
+  width: 100%;
+  max-width: 550px;
+}
+
+.color {
+  color: rgb(0, 110, 255);
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-header h1 {
+  margin: 0;
+}
+
+.form-control::placeholder {
+  color: rgb(0, 110, 255);
+}
+
+.btn {
+  font-size: 14px;
+}
