@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { BudgetService } from './services/budget.service';
+import { BudgetService } from '../services/budget.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Budget } from '../interfaces/buget.interface';
 
