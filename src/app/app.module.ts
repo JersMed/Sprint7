@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './home/modal/modal.component';
 import { PanelComponent } from './home/panel/panel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HistoryComponent } from './home/history/history.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     WelcomePageComponent,
     ModalComponent,
-    PanelComponent
+    PanelComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

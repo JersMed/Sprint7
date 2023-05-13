@@ -2,23 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { BudgetService } from '../services/budget.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Budget } from '../interfaces/buget.interface';
-
 
 @Component({
   selector: 'home-budget-app',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-
-
-  constructor(
-    private router: Router,
-    public budgetService: BudgetService,
-    private fb: FormBuilder
-  ) { }
+export class HomeComponent implements OnInit {
 
   public budgetForm!: FormGroup
   public total = 0
@@ -39,6 +31,12 @@ export class HomeComponent {
 
   }
 
+  constructor(
+    private router: Router,
+    public budgetService: BudgetService,
+    private fb: FormBuilder
+  ) { }
+
   invalidField(clientName: string) {
     return this.budgetDataForm.controls[clientName].errors && this.budgetDataForm.controls[clientName].touched
   }
@@ -49,23 +47,10 @@ export class HomeComponent {
 
   showBudgetList = () => {
     this.budgetService.showBudgetList = !this.budgetService.showBudgetList
-  }
-
-  totalResult = () => {
-    this.total = this.budgetService.totalResult();
-  };
-
-  deleteError() {
-    const checkboxList = document.querySelectorAll('.budgetCheckbox .error');
-
-    for (let i = 0; i < checkboxList.length; i++) {
-      let checkbox = checkboxList[i] as HTMLInputElement;
-      checkbox.classList.remove('error')
-    }
+    console.log(this.showBudgetList)
   }
 
   webCheck = (event: Event) => {
-
     const checkButton = event.target as HTMLInputElement;
     this.showPanel = checkButton.checked;
     this.budgetService.quantityWeb = checkButton.checked ? 1 : 0;
@@ -92,6 +77,22 @@ export class HomeComponent {
     this.deleteError();
   };
 
+  saveQuantity = (pageLangQuantity: Budget) => {
+    this.budgetService.quantityPages = pageLangQuantity.pages;
+    this.budgetService.quantityLang = pageLangQuantity.languages;
+    this.totalResult();
+  };
+
+  saveClientName = (event: Event) => {
+    const checkButton = event.target as HTMLInputElement;
+    this.budgetService.quantityAds = checkButton.checked ? 1 : 0;
+    this.totalResult();
+  };
+
+  totalResult = () => {
+    this.total = this.budgetService.totalResult();
+  };
+
   saveDataBudget() {
     console.log(this.budgetDataForm);
     if (this.total != 0) {
@@ -99,19 +100,13 @@ export class HomeComponent {
       this.budgetService.showPanel = false;
       this.resetForm()
     } else {
-      const checkboxList = document.querySelectorAll('input[type=checkbox]'); // Con document y querySelectorAll buscamos todos los checkbox de la página, se podría cambiar ('input[type=checkbox]') por la clase .budgetCheckbox
+      const checkboxList = document.querySelectorAll('input[type=checkbox]');
       for (let i = 0; i < checkboxList.length; i++) {
         let checkbox = checkboxList[i] as HTMLInputElement;
         checkbox.classList.add('error');
       }
     }
   }
-
-  saveQuantity = (pageLangQuantity: Budget) => {
-    this.budgetService.quantityPages = pageLangQuantity.pages;
-    this.budgetService.quantityLang = pageLangQuantity.languages;
-    this.totalResult();
-  };
 
   resetForm() {
 
@@ -125,6 +120,15 @@ export class HomeComponent {
     this.budgetService.quantityLang = 0;
 
     this.totalResult()
+  }
+
+  deleteError() {
+    const checkboxList = document.querySelectorAll('.budgetCheckbox .error');
+
+    for (let i = 0; i < checkboxList.length; i++) {
+      let checkbox = checkboxList[i] as HTMLInputElement;
+      checkbox.classList.remove('error')
+    }
   }
 
 }

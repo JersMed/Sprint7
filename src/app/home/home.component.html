@@ -2,14 +2,14 @@
     <article id="container" class="d-flex" [ngClass]="{'show':budgetService.showBudgetList}">
         <section id="parent" class="card">
             <div class="card-header">
-                <span class="btn btn-outline-primary float-start mt-1 me-2" routerLink="">
+                <span class="btn btn-outline-primary mt-1 me-2" routerLink="">
                     <i class="bi bi-house-fill"></i>
                 </span>
 
                 <h1 class="justify-content-center">Create your <b class="color">Budget</b></h1>
             </div>
 
-            <form id="budgetForm" (ngSubmit)="saveDataBudget()" autocomplete="off">
+            <form id="budgetForm" [formGroup]="budgetDataForm" (ngSubmit)="saveDataBudget()" autocomplete="off">
                 <div class="card-body">
 
                     <div class="budgetCheckbox mb-3 form-check">
@@ -28,7 +28,6 @@
                         <input id="ads" type="checkbox" (click)="adsCheck($event)" class="form-check-input"> Google Ads
                         Campaign (200 €)
                     </div>
-
 
                     <div class="form-floating mx-3 mb-3">
                         <input type="text" class="form-control" id="clientName" formControlName="clientName"
@@ -52,14 +51,14 @@
                         </p>
                     </div>
 
-                    <div
-                        class="d-flex align-items-center justify-content-center text-end mt-3 me-3 animate__animated animate__fadeInDown animate__delay-1s">
+                    <div class="d-flex align-items-center justify-content-center text-end mt-3 me-3">
                         <button id="saveBudget" type="submit" class="btn btn-outline-primary mx-5 mb-3">
-                            <i class="bi bi-save"></i> Save budget</button>
+                            <i class="bi bi-save"></i> Save budget </button>
 
-                        <button class=" btn btn-outline-primary mx-5 mb-3 linkBudgetHistory text-decoration-none"
-                            (click)="showBudgetList()"><i class="bi bi-clock-history "></i> Budget
-                            history</button>
+                        <button type="button" class="btn btn-outline-primary mx-5 mb-3" (click)="showBudgetList()">
+                            <i class="bi bi-clock-history"></i> Budget history
+                        </button>
+
                     </div>
 
                 </div>
@@ -72,8 +71,7 @@
             </div>
 
         </section>
-
-        <!-- <app-budget-list class="show ms-2"></app-budget-list> -->
-
+        <history-budget *ngIf="showBudgetList"></history-budget>
     </article>
+
 </body>

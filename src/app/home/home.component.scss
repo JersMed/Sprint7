@@ -7,7 +7,7 @@ body {
   background: linear-gradient(141deg, #ccc 25%, #eee 40%, #ddd 55%);
   font-family: 'Roboto';
   margin: 0; 
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .card {
@@ -45,4 +45,10 @@ article {
 
 .btn {
   font-size: 14px;
+}
+
+article#container {
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
