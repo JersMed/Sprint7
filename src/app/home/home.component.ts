@@ -21,14 +21,11 @@ export class HomeComponent implements OnInit {
   })
 
   get showPanel() {
-
     return this.budgetService.showPanel
   }
 
   set showPanel(value: any) {
-
     this.budgetService.showPanel = value
-
   }
 
   constructor(
@@ -57,7 +54,6 @@ export class HomeComponent implements OnInit {
     this.budgetService.quantityPages = checkButton.checked ? 1 : 0;
     this.budgetService.quantityLang = checkButton.checked ? 1 : 0;
     this.totalResult();
-
     this.deleteError();
   };
 
@@ -65,7 +61,6 @@ export class HomeComponent implements OnInit {
     const checkButton = event.target as HTMLInputElement;
     this.budgetService.quantitySeo = checkButton.checked ? 1 : 0;
     this.totalResult();
-
     this.deleteError();
   };
 
@@ -73,7 +68,6 @@ export class HomeComponent implements OnInit {
     const checkButton = event.target as HTMLInputElement;
     this.budgetService.quantityAds = checkButton.checked ? 1 : 0;
     this.totalResult();
-
     this.deleteError();
   };
 
@@ -94,7 +88,6 @@ export class HomeComponent implements OnInit {
   };
 
   saveDataBudget() {
-    console.log(this.budgetDataForm);
     if (this.total != 0) {
       this.budgetService.saveDataBudget(this.budgetDataForm);
       this.budgetService.showPanel = false;
@@ -109,7 +102,6 @@ export class HomeComponent implements OnInit {
   }
 
   resetForm() {
-
     this.budgetDataForm.reset();
     const checkboxes = document.querySelectorAll('input[type=checkbox]');
     checkboxes.forEach((checkbox) => {
@@ -118,7 +110,6 @@ export class HomeComponent implements OnInit {
     this.budgetService.quantityWeb = 0;
     this.budgetService.quantityPages = 0;
     this.budgetService.quantityLang = 0;
-
     this.totalResult()
   }
 
@@ -130,5 +121,4 @@ export class HomeComponent implements OnInit {
       checkbox.classList.remove('error')
     }
   }
-
 }

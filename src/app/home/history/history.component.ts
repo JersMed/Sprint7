@@ -10,6 +10,12 @@ import { BudgetService } from 'src/app/services/budget.service';
 })
 export class HistoryComponent {
 
+  showBudgetHistory = false;
+
+  showBudgetList() {
+    this.showBudgetHistory = !this.showBudgetHistory;
+  }
+
   public budgetList: Budget[] = [];
   public searchText: string = "";
   public currentOrder = this.sortById;
@@ -23,9 +29,10 @@ export class HistoryComponent {
     this.budgetList = this.budgetService.budgetList
   }
 
-  showBudgetList = () => {
-    this.budgetService.showBudgetList = !this.budgetService.showBudgetList
+  closeBudgetList() {
+    this.showBudgetHistory = false;
   }
+
 
   sortById() {
     this.currentOrder = this.sortById;
@@ -78,10 +85,8 @@ export class HistoryComponent {
   }
 
   deleteBudget(index: number) {
-
     this.budgetList.splice(index, 1);
     localStorage.setItem('budgetList', JSON.stringify(this.budgetList));
-
   }
 
   searchByBudgetName(searchText: string) {
@@ -91,6 +96,5 @@ export class HistoryComponent {
       return bg.budgetName.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
     })
     this.currentOrder();
-
   }
 }

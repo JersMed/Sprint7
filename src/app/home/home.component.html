@@ -35,7 +35,7 @@
                         <label for="clientName">Client name</label>
                         <p class="form-text text-danger">
                             <span *ngIf="invalidField('clientName')">
-                                Please enter the client name.
+                                Please type the client name.
                             </span>
                         </p>
                     </div>
@@ -46,7 +46,7 @@
                         <label for="budgetName">Budget name</label>
                         <p class="form-text text-danger">
                             <span *ngIf="invalidField('budgetName')">
-                                Please put a name to this budget.
+                                Please write a name to this budget.
                             </span>
                         </p>
                     </div>
@@ -55,7 +55,8 @@
                         <button id="saveBudget" type="submit" class="btn btn-outline-primary mx-5 mb-3">
                             <i class="bi bi-save"></i> Save budget </button>
 
-                        <button type="button" class="btn btn-outline-primary mx-5 mb-3" (click)="showBudgetList()">
+                        <button type="button" class="btn btn-outline-primary mx-5 mb-3"
+                            (click)="budgetService.showBudgetList = !budgetService.showBudgetList">
                             <i class="bi bi-clock-history"></i> Budget history
                         </button>
 

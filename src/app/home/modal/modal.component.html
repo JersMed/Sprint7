@@ -4,12 +4,14 @@
 <ng-template #content let-modal>
     <div class="modal-body text-center">
         <div *ngIf="typeOfMessage === 'pagesModal'; else languagesModal">
-            <i class="bi bi-info-circle-fill text-primary"></i> Select the number of pages you want. <br> You must
-            choose at least one.
+            <i class="bi bi-info-circle-fill text-primary"></i> Please select the number of pages what you need for your
+            project. <br> You must
+            at least choose one.
         </div>
         <ng-template #languagesModal>
-            <div><i class="bi bi-info-circle-fill text-primary"></i> Select the number of languages you need for your
-                website. <br> You must choose at least one.</div>
+            <div><i class="bi bi-info-circle-fill text-primary"></i> Please select the number of languages you need for
+                your
+                website. <br> One will be added by default.</div>
         </ng-template>
     </div>
 </ng-template>
