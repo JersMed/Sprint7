@@ -111,6 +111,7 @@ export class HomeComponent implements OnInit {
     this.budgetService.quantityPages = 0;
     this.budgetService.quantityLang = 0;
     this.totalResult()
+    this.total = 0;
   }
 
   deleteError() {
