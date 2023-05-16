@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Budget } from 'src/app/interfaces/buget.interface';
 import { BudgetService } from 'src/app/services/budget.service';
-// import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'history-budget',
@@ -10,10 +9,11 @@ import { BudgetService } from 'src/app/services/budget.service';
 })
 export class HistoryComponent {
 
-  showBudgetHistory = false;
+  showBudgetList: boolean = false;
 
-  showBudgetList() {
-    this.showBudgetHistory = !this.showBudgetHistory;
+  closeBudgetList() {
+    this.showBudgetList = true;
+    console.log(this.showBudgetList)
   }
 
   public budgetList: Budget[] = [];
@@ -28,11 +28,6 @@ export class HistoryComponent {
   ) {
     this.budgetList = this.budgetService.budgetList
   }
-
-  closeBudgetList() {
-    this.showBudgetHistory = false;
-  }
-
 
   sortById() {
     this.currentOrder = this.sortById;
@@ -58,13 +53,6 @@ export class HistoryComponent {
       return 0;
     })
   }
-
-  // resetBudgetList() {
-
-  //   this.budgetList = this.budgetService.budgetList
-  //   this.sortById()
-
-  // }
 
   sortByDate() {
     this.currentOrder = this.sortByDate;

@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { BudgetService } from '../services/budget.service';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Budget } from '../interfaces/buget.interface';
+import { HistoryComponent } from './history/history.component';
 
 @Component({
   selector: 'home-budget-app',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
   public budgetForm!: FormGroup
   public total = 0
+
 
   public budgetDataForm: FormGroup = this.fb.group({
     clientName: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,7 +34,10 @@ export class HomeComponent implements OnInit {
     private router: Router,
     public budgetService: BudgetService,
     private fb: FormBuilder
+
   ) { }
+
+
 
   invalidField(clientName: string) {
     return this.budgetDataForm.controls[clientName].errors && this.budgetDataForm.controls[clientName].touched
@@ -42,9 +47,10 @@ export class HomeComponent implements OnInit {
     this.router.getCurrentNavigation();
   }
 
-  showBudgetList = () => {
-    this.budgetService.showBudgetList = !this.budgetService.showBudgetList
-    console.log(this.showBudgetList)
+  showBudgetList: boolean = false;
+
+  showList = () => {
+    this.showBudgetList = true;
   }
 
   webCheck = (event: Event) => {
@@ -92,6 +98,7 @@ export class HomeComponent implements OnInit {
       this.budgetService.saveDataBudget(this.budgetDataForm);
       this.budgetService.showPanel = false;
       this.resetForm()
+      console.log(this.showBudgetList)
     } else {
       const checkboxList = document.querySelectorAll('input[type=checkbox]');
       for (let i = 0; i < checkboxList.length; i++) {
