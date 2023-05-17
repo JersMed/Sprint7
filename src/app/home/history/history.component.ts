@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Budget } from 'src/app/interfaces/buget.interface';
 import { BudgetService } from 'src/app/services/budget.service';
 
@@ -9,10 +9,12 @@ import { BudgetService } from 'src/app/services/budget.service';
 })
 export class HistoryComponent {
 
+  @Output() CloseList = new EventEmitter<boolean>
+
   showBudgetList: boolean = false;
 
   closeBudgetList() {
-    this.showBudgetList = true;
+    this.CloseList.emit(true);
     console.log(this.showBudgetList)
   }
 

@@ -37,8 +37,6 @@ export class HomeComponent implements OnInit {
 
   ) { }
 
-
-
   invalidField(clientName: string) {
     return this.budgetDataForm.controls[clientName].errors && this.budgetDataForm.controls[clientName].touched
   }
@@ -51,6 +49,10 @@ export class HomeComponent implements OnInit {
 
   showList = () => {
     this.showBudgetList = true;
+  }
+
+  closeBudgetList = () => {
+    this.showBudgetList = false;
   }
 
   webCheck = (event: Event) => {
